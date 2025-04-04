@@ -4,6 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from "../components/Navbar";
 import { X } from 'lucide-react';
 
+// Import your media files (adjust paths as needed)
+import HeroesImage from '../assets/images/Heroes.jpg';
+import DedanKimathiVideo from '../assets/videos/Dedan Kimathi.mp4';
+import NelsonMandelaDenimVideo from '../assets/videos/Nelson Mandela Denim.mp4';
+import NelsonMandelaBottletopsVideo from '../assets/videos/Nelson Mandela Bottletops.mp4';
+import WangariMaathaiVideo from '../assets/videos/Wangari Maathai.mp4';
+
 const Journey = () => {
   const navigate = useNavigate();
   const [mediaViewer, setMediaViewer] = useState<{type: string, url: string} | null>(null);
@@ -25,33 +32,34 @@ const Journey = () => {
       year: "Education",
       title: "Academic Foundations",
       description: "During my time at Kanunga High School, my artistic skills were recognized by both peers and teachers. I was entrusted with developing a renovation plan for the school.",
-      quote: "Later at Dedan Kimathi University, I found inspiration in the region's history - home to freedom fighters like Dedan Kimathi and environmentalists like Wangari Maathai.",
+      quote: "Later at Dedan Kimathi University located in Nyeri, I found inspiration in the region's history - home to freedom fighters like Dedan Kimathi and environmentalists like Wangari Maathai.",
       emoji: "🎓",
       mediaType: "image",
-      content: "/academic-foundations.jpg",
-      stats: "Heroes"
+      content: HeroesImage, // Updated to use imported image
+      stats: "Heroes",
+      landscape: true // Added this flag for landscape orientation
     },
     {
       id: 3,
       year: "Breakthrough",
       title: "Artistic Breakthrough with Recycled Materials",
-      description: "After initial struggles with pencil drawings, I discovered my true calling - transforming waste into art. My first major works were portraits of Nelson Mandela and Dedan Kimathi made from 700 pairs of jeans.",
+      description: "On 7th January 2023,I officially began doing pencil artworks which I stopped months after losing inspiration in pencil medium.I had discovered my true calling - transforming waste into art. My first major works were portraits of Nelson Mandela and Dedan Kimathi made from 400 pairs of waste jeans trousers.",
       quote: "The Dedan Kimathi portrait captivated thousands at KUPAA, showcasing the power of optical illusions with recycled materials.",
       emoji: "👖",
       mediaType: "video",
-      content: "/denim-art-process.mp4",
-      content2: "/kimathi-portrait.mp4",
+      content: NelsonMandelaDenimVideo, // Updated to use imported video
+      content2: DedanKimathiVideo, // Updated to use imported video
       stats: "700+ Recycled Jeans"
     },
     {
       id: 4,
       year: "Community",
       title: "Thunguma Children's Home Collaboration",
-      description: "Volunteering at Thunguma Children's Home allowed me to teach art while promoting environmental conservation. Together we created a portrait of Nelson Mandela using 6,732 bottle tops collected over months.",
-      quote: "This project combined art, sustainability, and community engagement in powerful ways.",
+      description: "On December 2023 I began volunteering at Thunguma Children's Home teaching the kids there art.Volunteering at Thunguma Children's Home allowed me to teach art while promoting environmental conservation. Together we created a portrait of Nelson Mandela using 6,732 bottle tops collected over months.",
+     quote: "This project combined art, sustainability, and community engagement in powerful ways.",
       emoji: "👥",
       mediaType: "video",
-      content: "/bottle-cap-art.mp4",
+      content: NelsonMandelaBottletopsVideo, // Updated to use imported video
       stats: "6,732 Bottle Tops"
     },
     {
@@ -62,7 +70,7 @@ const Journey = () => {
       quote: "As the first artwork of its kind, it demonstrates how discarded materials can become powerful storytelling tools.",
       emoji: "🌳",
       mediaType: "video",
-      content: "/wood-art-process.mp4",
+      content: WangariMaathaiVideo, // Updated to use imported video
       stats: "120kg Timber Cutoffs"
     }
   ];
@@ -76,10 +84,8 @@ const Journey = () => {
   };
 
   const navigateToProjects = () => {
-    // Scroll to top before navigation
     window.scrollTo(0, 0);
     navigate('/projects');
-    // Additional scroll to top after a small delay to ensure it works
     setTimeout(() => window.scrollTo(0, 0), 50);
   };
 
@@ -88,7 +94,6 @@ const Journey = () => {
       <Navbar />
       
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-        {/* Decorative timeline line */}
         <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-400 via-blue-400 to-purple-500 transform -translate-x-1/2 hidden md:block"></div>
         
         <motion.div 
@@ -103,7 +108,6 @@ const Journey = () => {
           <div className="space-y-24 relative">
             {journeyItems.map((item, index) => (
               <div key={item.id} className="relative grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
-                {/* Left-aligned items (odd) */}
                 {index % 2 === 0 ? (
                   <>
                     <div className="md:col-span-2 md:pr-8 relative">
@@ -119,7 +123,7 @@ const Journey = () => {
                       </p>
                     </div>
                     <div className="md:col-span-3">
-                      <div className={`bg-gradient-to-br ${index === 0 ? 'from-yellow-900' : index === 2 ? 'from-purple-900' : 'from-teal-900'} to-black rounded-2xl overflow-hidden ${item.mediaType === 'image' ? 'aspect-video' : 'aspect-[9/16]'} flex items-center justify-center relative`}>
+                      <div className={`bg-gradient-to-br ${index === 0 ? 'from-yellow-900' : index === 2 ? 'from-purple-900' : 'from-teal-900'} to-black rounded-2xl overflow-hidden ${item.landscape ? 'aspect-video' : item.mediaType === 'image' ? 'aspect-video' : 'aspect-[9/16]'} flex items-center justify-center relative`}>
                         <div className="absolute inset-0 flex items-center justify-center text-9xl opacity-20">
                           {item.emoji}
                         </div>
@@ -134,7 +138,12 @@ const Journey = () => {
                                 onClick={() => openMedia('image', item.content)}
                                 className="absolute inset-0 w-full h-full flex items-center justify-center"
                               >
-                                <div className="relative z-10 text-center p-8">
+                                <img 
+                                  src={item.content} 
+                                  alt={item.title}
+                                  className="w-full h-full object-cover opacity-70 hover:opacity-90 transition"
+                                />
+                                <div className="absolute z-10 text-center p-8">
                                   <div className="text-5xl mb-4">{item.emoji}</div>
                                   <h4 className="text-xl font-bold mb-2">{item.stats}</h4>
                                 </div>
@@ -143,14 +152,19 @@ const Journey = () => {
                           </>
                         ) : (
                           <>
-                            {/* Two video placeholders for breakthrough section */}
                             {index === 2 ? (
                               <div className="grid grid-cols-1 gap-4 w-full h-full p-4">
                                 <button 
                                   onClick={() => openMedia('video', item.content)}
                                   className="relative bg-black bg-opacity-50 rounded-xl flex items-center justify-center h-1/2"
                                 >
-                                  <div className="text-center p-4">
+                                  <video 
+                                    src={item.content}
+                                    className="absolute inset-0 w-full h-full object-cover opacity-50 hover:opacity-80 transition"
+                                    muted
+                                    loop
+                                  />
+                                  <div className="text-center p-4 z-10">
                                     <div className="text-4xl mb-2">Nelson Mandela</div>
                                     <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto">
                                       <span className="text-xl">▶</span>
@@ -161,7 +175,13 @@ const Journey = () => {
                                   onClick={() => openMedia('video', item.content2!)}
                                   className="relative bg-black bg-opacity-50 rounded-xl flex items-center justify-center h-1/2"
                                 >
-                                  <div className="text-center p-4">
+                                  <video 
+                                    src={item.content2}
+                                    className="absolute inset-0 w-full h-full object-cover opacity-50 hover:opacity-80 transition"
+                                    muted
+                                    loop
+                                  />
+                                  <div className="text-center p-4 z-10">
                                     <div className="text-4xl mb-2">Dedan Kimathi</div>
                                     <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto">
                                       <span className="text-xl">▶</span>
@@ -174,6 +194,12 @@ const Journey = () => {
                                 onClick={() => openMedia('video', item.content)}
                                 className="absolute inset-0 flex items-center justify-center"
                               >
+                                <video 
+                                  src={item.content}
+                                  className="absolute inset-0 w-full h-full object-cover opacity-50 hover:opacity-80 transition"
+                                  muted
+                                  loop
+                                />
                                 <div className="relative z-10 text-center p-8">
                                   <div className="text-8xl mb-6">{item.stats.split(' ')[0]}</div>
                                   <h4 className="text-2xl font-bold mb-2">{item.stats.split(' ').slice(1).join(' ')}</h4>
@@ -191,9 +217,8 @@ const Journey = () => {
                   </>
                 ) : (
                   <>
-                    {/* Right-aligned items (even) */}
                     <div className="md:col-span-3 order-2 md:order-1">
-                      <div className={`bg-gradient-to-br ${index === 1 ? 'from-blue-900' : 'from-green-900'} to-black rounded-2xl overflow-hidden aspect-[9/16] relative`}>
+                      <div className={`bg-gradient-to-br ${index === 1 ? 'from-blue-900' : 'from-green-900'} to-black rounded-2xl overflow-hidden ${item.landscape ? 'aspect-video' : 'aspect-[9/16]'} relative`}>
                         <div className="absolute inset-0 flex items-center justify-center text-9xl opacity-20">
                           {item.emoji}
                         </div>
@@ -201,6 +226,20 @@ const Journey = () => {
                           onClick={() => openMedia(item.mediaType, item.content)}
                           className="absolute inset-0 flex items-center justify-center"
                         >
+                          {item.mediaType === 'image' ? (
+                            <img 
+                              src={item.content} 
+                              alt={item.title}
+                              className="absolute inset-0 w-full h-full object-cover opacity-70 hover:opacity-90 transition"
+                            />
+                          ) : (
+                            <video 
+                              src={item.content}
+                              className="absolute inset-0 w-full h-full object-cover opacity-50 hover:opacity-80 transition"
+                              muted
+                              loop
+                            />
+                          )}
                           <div className="relative z-10 text-center p-8">
                             <div className="text-8xl mb-6">{item.stats.split(' ')[0]}</div>
                             <h4 className="text-2xl font-bold mb-2">{item.stats.split(' ').slice(1).join(' ')}</h4>
@@ -229,7 +268,6 @@ const Journey = () => {
               </div>
             ))}
 
-            {/* Future section */}
             <div className="relative flex flex-col items-center justify-center text-center py-12">
               <div className="w-8 h-8 rounded-full bg-purple-500 border-4 border-black mb-6"></div>
               <h3 className="text-2xl font-bold mb-4 text-purple-400">The Journey Continues...</h3>
@@ -249,7 +287,6 @@ const Journey = () => {
         </motion.div>
       </section>
 
-      {/* Media Viewer Modal */}
       {mediaViewer && (
         <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
           <button 

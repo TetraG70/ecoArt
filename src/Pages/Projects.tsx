@@ -3,6 +3,13 @@ import { motion } from 'framer-motion';
 import Navbar from "../components/Navbar";
 import { X } from 'lucide-react';
 
+// Import video files
+import DedanKimathiVideo from '../assets/videos/Dedan Kimathi.mp4';
+import NelsonMandelaDenimVideo from '../assets/videos/Nelson Mandela Denim.mp4';
+import NelsonMandelaBottletopsVideo from '../assets/videos/Nelson Mandela Bottletops.mp4';
+import WangariMaathaiVideo from '../assets/videos/Wangari Maathai.mp4';
+import StaleyNailsVideo from '../assets/videos/Staley Nails.mp4';
+
 const Projects = () => {
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
   const [videoPlaying, setVideoPlaying] = useState<number | null>(null);
@@ -30,7 +37,7 @@ The Journey Unveiled: 14 Months of Dedication
 Behind the scenes, Tetrag_arts embarked on a 14-month hustle to bring "Dedan Kimathi's Nightfall" to life. The initial year was dedicated to collecting and preparing the materials—waste denim jeans, frame wood, and glue—setting the stage for the intricate artwork. The subsequent two months witnessed the process of coiling denim seams to its rightful place, finally forming Dedan Kimathi's face.
 
 "Stitching In Legacy" is more than a mere artwork; it's a testament to Tetra G dedication to sustainability, cultural reverence, and the exploration of artistic boundaries. This masterpiece invites viewers to witness the harmonious convergence of art and science, making it a must-see for enthusiasts, history buffs, and those captivated by the magic of sustainable creativity.`,
-      video: "/kimathi-denim.mp4",
+      video: DedanKimathiVideo, // Updated to use imported video
       emoji: "👖"
     },
     {
@@ -56,7 +63,7 @@ Waste Management Message:
 
 Conclusion:
 This artwork stands as a testament to Tetra G's ability to transform waste materials into a profound and visually striking tribute, all while championing sustainability and responsible waste management. "Sustainable Threads" invites viewers to appreciate not only the artistry but also the deeper symbolism woven into the carefully arranged buttons that collectively form the face of an African hero, all within the context of a mindful approach to waste.`,
-      video: "/mandela-denim-buttons.mp4",
+      video: NelsonMandelaDenimVideo, // Updated to use imported video
       emoji: "🧵"
     },
     {
@@ -89,7 +96,7 @@ The portrait employs optical illusion techniques that create a dynamic viewing e
 
 **Conclusion**  
 This collaborative artwork stands as a powerful testament to community support and artistic expression. The finished portrait will serve as a lasting tribute to Mary Lynn Staley's impact and the valuable lessons learned by the students throughout this creative process.`,
-      video: "/nail-portrait.mp4",
+      video: StaleyNailsVideo, // Updated to use imported video
       emoji: "🔩"
     },
     {
@@ -112,7 +119,7 @@ This collaborative effort pays tribute to Mandela, embodying his vision of unity
 
 **Conclusion: Art as a Catalyst**  
 As viewers stand before this striking portrait, they witness art's power to inspire action. The work encourages us to cherish our environment and see potential in every discarded item. In this vibrant tapestry of plastic dreams, we find a call to transform waste into beauty and hope.`,
-      video: "/mandela-bottle-tops.mp4",
+      video: NelsonMandelaBottletopsVideo, // Updated to use imported video
       emoji: "🥤"
     },
     {
@@ -131,7 +138,7 @@ The cutoffs were carefully shaped at angles of 90°, 87°, 84°, 81°, and 78°,
 This technique carried a deeper symbolism. Just as Wangari Maathai shed light on environmental issues that were often ignored, the bright light revealed a portrait created from what would have otherwise been discarded timber. It demonstrated how even the smallest, most seemingly useless pieces could be transformed into something valuable, serving as a reminder that every resource holds potential when used thoughtfully and creatively.
 
 Through this portrait, I hoped to inspire a shift in mindset, encouraging people to rethink waste, embrace sustainable resource management, and recognize the importance of every piece of timber we use. In honoring Maathai's legacy, I aimed to promote a future where we value and preserve our environment, reducing wastage and making the most of what we have.`,
-      video: "/wangari-timber.mp4",
+      video: WangariMaathaiVideo, // Updated to use imported video
       emoji: "🌳"
     }
   ];

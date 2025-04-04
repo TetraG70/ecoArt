@@ -138,32 +138,6 @@ const Foundation = () => {
               </div>
             </div>
           </div>
-
-          {/* Impact Stats */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 text-center"
-          >
-            <div className="bg-gray-900 p-6 rounded-xl border border-gray-800">
-              <div className="text-3xl font-bold text-yellow-400 mb-2">10+</div>
-              <div className="text-gray-300">Years Experience</div>
-            </div>
-            <div className="bg-gray-900 p-6 rounded-xl border border-gray-800">
-              <div className="text-3xl font-bold text-blue-400 mb-2">50+</div>
-              <div className="text-gray-300">Projects Completed</div>
-            </div>
-            <div className="bg-gray-900 p-6 rounded-xl border border-gray-800">
-              <div className="text-3xl font-bold text-emerald-400 mb-2">1000+</div>
-              <div className="text-gray-300">Students Taught</div>
-            </div>
-            <div className="bg-gray-900 p-6 rounded-xl border border-gray-800">
-              <div className="text-3xl font-bold text-purple-400 mb-2">10K+</div>
-              <div className="text-gray-300">Materials Recycled</div>
-            </div>
-          </motion.div>
         </motion.div>
       </section>
     </div>
