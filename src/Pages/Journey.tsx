@@ -29,7 +29,7 @@ const Journey = () => {
       emoji: "🎓",
       mediaType: "image",
       content: "/academic-foundations.jpg",
-      stats: "Kanunga High School & Dedan Kimathi University"
+      stats: "Heroes"
     },
     {
       id: 3,
@@ -67,14 +67,20 @@ const Journey = () => {
     }
   ];
 
-  // Removed unused toggleExpand function
-
   const openMedia = (type: string, url: string) => {
     setMediaViewer({ type, url });
   };
 
   const closeMedia = () => {
     setMediaViewer(null);
+  };
+
+  const navigateToProjects = () => {
+    // Scroll to top before navigation
+    window.scrollTo(0, 0);
+    navigate('/projects');
+    // Additional scroll to top after a small delay to ensure it works
+    setTimeout(() => window.scrollTo(0, 0), 50);
   };
 
   return (
@@ -119,28 +125,33 @@ const Journey = () => {
                         </div>
                         {item.mediaType === 'image' ? (
                           <>
-                            <button 
-                              onClick={() => openMedia('image', item.content)}
-                              className="absolute inset-0 w-full h-full flex items-center justify-center"
-                            >
-                              <div className="relative z-10 text-center p-8">
-                                <div className="text-5xl mb-4">{item.emoji}</div>
-                                <h4 className="text-xl font-bold mb-2">{item.stats.split(' - ')[0]}</h4>
-                                <p className="text-gray-300">{item.stats.split(' - ')[1]}</p>
+                            {index === 0 ? (
+                              <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="text-9xl">{item.emoji}</div>
                               </div>
-                            </button>
+                            ) : (
+                              <button 
+                                onClick={() => openMedia('image', item.content)}
+                                className="absolute inset-0 w-full h-full flex items-center justify-center"
+                              >
+                                <div className="relative z-10 text-center p-8">
+                                  <div className="text-5xl mb-4">{item.emoji}</div>
+                                  <h4 className="text-xl font-bold mb-2">{item.stats}</h4>
+                                </div>
+                              </button>
+                            )}
                           </>
                         ) : (
                           <>
                             {/* Two video placeholders for breakthrough section */}
                             {index === 2 ? (
-                              <div className="grid grid-cols-2 gap-4 w-full h-full p-4">
+                              <div className="grid grid-cols-1 gap-4 w-full h-full p-4">
                                 <button 
                                   onClick={() => openMedia('video', item.content)}
-                                  className="relative bg-black bg-opacity-50 rounded-xl flex items-center justify-center"
+                                  className="relative bg-black bg-opacity-50 rounded-xl flex items-center justify-center h-1/2"
                                 >
                                   <div className="text-center p-4">
-                                    <div className="text-4xl mb-2">Process</div>
+                                    <div className="text-4xl mb-2">Nelson Mandela</div>
                                     <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto">
                                       <span className="text-xl">▶</span>
                                     </div>
@@ -148,10 +159,10 @@ const Journey = () => {
                                 </button>
                                 <button 
                                   onClick={() => openMedia('video', item.content2!)}
-                                  className="relative bg-black bg-opacity-50 rounded-xl flex items-center justify-center"
+                                  className="relative bg-black bg-opacity-50 rounded-xl flex items-center justify-center h-1/2"
                                 >
                                   <div className="text-center p-4">
-                                    <div className="text-4xl mb-2">Result</div>
+                                    <div className="text-4xl mb-2">Dedan Kimathi</div>
                                     <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto">
                                       <span className="text-xl">▶</span>
                                     </div>
@@ -228,7 +239,7 @@ const Journey = () => {
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => navigate('/projects')}
+                onClick={navigateToProjects}
                 className="mt-8 px-8 py-3 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full font-bold hover:opacity-90 transition"
               >
                 Explore My Projects

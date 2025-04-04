@@ -5,18 +5,17 @@ import {
   Home,
   Sprout,
   Folder,
-  Library,
+  Building2,
   Mail,
   Menu,
   X
 } from 'lucide-react';
 
-// Navigation items configuration with your requested icons
 const NAV_ITEMS = [
   { id: 'home', path: '/', label: 'Home', icon: Home },
   { id: 'journey', path: '/journey', label: 'Journey', icon: Sprout },
   { id: 'projects', path: '/projects', label: 'Projects', icon: Folder },
-  { id: 'foundation', path: '/foundation', label: 'Foundation', icon: Library },
+  { id: 'foundation', path: '/foundation', label: 'Foundation', icon: Building2 },
   { id: 'contact', path: '/contact', label: 'Contact', icon: Mail }
 ];
 
@@ -32,6 +31,8 @@ const Navbar = () => {
   const activeSection = getActiveSection();
 
   const handleNavigation = (path: string) => {
+    // Scroll to top before navigation
+    window.scrollTo(0, 0);
     navigate(path);
     setMobileMenuOpen(false);
   };
