@@ -1,8 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import Navbar from "../components/Navbar";
-import { X, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
+import { X } from 'lucide-react';
 
 // Import media files
 import HeroesImage from '../assets/images/Heroes.jpg';
