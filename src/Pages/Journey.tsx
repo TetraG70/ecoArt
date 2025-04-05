@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import Navbar from "../components/Navbar";
-import { X } from 'lucide-react';
+import { X, Play } from 'lucide-react';
 
 // Import media files
 import HeroesImage from '../assets/images/Heroes.jpg';
@@ -16,7 +16,7 @@ const Journey = () => {
   const [mediaViewer, setMediaViewer] = useState<{type: string, url: string} | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
-  // Floating materials background - increased number of emojis
+  // Floating materials background
   const floatingMaterials = [...Array(40)].map((_, i) => {
     const materials = [
       { emoji: "👖", color: "text-blue-400", size: "text-3xl" },
@@ -245,7 +245,7 @@ const Journey = () => {
                   </h3>
                   <p className="text-white text-sm mb-4">{item.year}</p>
                   
-                  {/* Media container - modified for the "Breakthrough with Recycled Materials" section */}
+                  {/* Media container */}
                   <div className="mb-6 bg-gradient-to-br from-gray-800 to-black rounded-xl overflow-hidden relative">
                     {index === 2 ? (
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -253,16 +253,19 @@ const Journey = () => {
                         <div className="aspect-video relative">
                           <button 
                             onClick={() => openMedia('video', item.content)}
-                            className="absolute inset-0 w-full h-full"
+                            className="absolute inset-0 w-full h-full group"
                           >
                             <video 
                               src={item.content}
-                              className="w-full h-full object-cover opacity-50 hover:opacity-80 transition"
+                              className="w-full h-full object-cover opacity-80 group-hover:opacity-90 transition"
                               muted
                               loop
                               ref={el => { videoRefs.current[0] = el; }}
                             />
-                            <div className="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-30">
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <Play className="w-12 h-12 text-white opacity-80 group-hover:opacity-100 transition" />
+                            </div>
+                            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-2 text-center text-white">
                               Nelson Mandela
                             </div>
                           </button>
@@ -272,16 +275,19 @@ const Journey = () => {
                         <div className="aspect-video relative">
                           <button 
                             onClick={() => openMedia('video', item.content2!)}
-                            className="absolute inset-0 w-full h-full"
+                            className="absolute inset-0 w-full h-full group"
                           >
                             <video 
                               src={item.content2}
-                              className="w-full h-full object-cover opacity-50 hover:opacity-80 transition"
+                              className="w-full h-full object-cover opacity-80 group-hover:opacity-90 transition"
                               muted
                               loop
                               ref={el => { videoRefs.current[1] = el; }}
                             />
-                            <div className="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-30">
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <Play className="w-12 h-12 text-white opacity-80 group-hover:opacity-100 transition" />
+                            </div>
+                            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-2 text-center text-white">
                               Dedan Kimathi
                             </div>
                           </button>
@@ -301,27 +307,33 @@ const Journey = () => {
                           ) : (
                             <button 
                               onClick={() => openMedia('image', item.content)}
-                              className="absolute inset-0 w-full h-full flex items-center justify-center"
+                              className="absolute inset-0 w-full h-full flex items-center justify-center group"
                             >
                               <img 
                                 src={item.content} 
                                 alt={item.title}
-                                className="w-full h-full object-cover opacity-70 hover:opacity-90 transition"
+                                className="w-full h-full object-cover opacity-70 group-hover:opacity-90 transition"
                               />
+                              <div className="absolute inset-0 flex items-center justify-center">
+                                <Play className="w-12 h-12 text-white opacity-80 group-hover:opacity-100 transition" />
+                              </div>
                             </button>
                           )
                         ) : (
                           <button 
                             onClick={() => openMedia('video', item.content)}
-                            className="absolute inset-0 w-full h-full flex items-center justify-center"
+                            className="absolute inset-0 w-full h-full flex items-center justify-center group"
                           >
                             <video 
                               src={item.content}
-                              className="absolute inset-0 w-full h-full object-cover opacity-50 hover:opacity-80 transition"
+                              className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 transition"
                               muted
                               loop
                               ref={el => { videoRefs.current[index] = el; }}
                             />
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <Play className="w-12 h-12 text-white opacity-80 group-hover:opacity-100 transition" />
+                            </div>
                           </button>
                         )}
                       </div>
